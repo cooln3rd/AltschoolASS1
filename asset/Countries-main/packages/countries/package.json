@@ -1,0 +1,26 @@
+{
+  "name": "countries",
+  "version": "3.0.6",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    "*": "./src/*"
+  },
+  "author": {
+    "name": "Dmytro Klymenko",
+    "email": "d@klmn.me",
+    "url": "https://github.com/dmythro"
+  },
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint \"{/**,}/*.ts\"",
+    "lint:fix": "eslint \"{/**,}/*.ts\" --fix"
+  },
+  "devDependencies": {
+    "tsup": "7.2.0",
+    "typescript": "~5.2.2"
+  },
+  "license": "MIT"
+}

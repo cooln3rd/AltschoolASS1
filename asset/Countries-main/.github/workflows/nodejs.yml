@@ -1,0 +1,43 @@
+name: Countries JS
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/nodejs.yml'
+      - 'packages/countries/src/**'
+      - '!.editorconfig'
+      - '!**LICENSE*'
+      - '!**README*'
+
+jobs:
+  nodejs:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20, 18]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          cache: 'npm'
+          node-version: ${{ matrix.node-version }}
+
+      - name: NPM install
+        run: npm install --prefer-offline --no-audit
+        env:
+          CI: true
+
+      - name: Build & Test
+        # Runs lint, build & tests
+        run: npm run ci
+        env:
+          CI: true
